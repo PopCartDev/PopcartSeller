@@ -1,0 +1,8 @@
+<!-- ========== Topbar Start ========== -->
+
+@{ await Html.RenderPartialAsync("_Topbar", new { sub_title = "Welcome!" }); }
+<!-- ========== Topbar End ========== -->
+
+<!-- ========== App Menu Start ========== -->
+@{ await Html.RenderPartialAsync("_Main-nav", new { sub_title = "Welcome!" }); }
+<!-- ========== App Menu End ========== -->
