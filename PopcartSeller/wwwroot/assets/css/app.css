@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Play:wght@400;700&display=swap");
 /* Root Prefix Variable */
 :root {
-  --bs-logo-lg-height: 24px;
+  --bs-logo-lg-height: 60px;
   --bs-logo-sm-height: 26px;
   --bs-main-nav-width: 280px;
   --bs-main-nav-width-sm: 75px;

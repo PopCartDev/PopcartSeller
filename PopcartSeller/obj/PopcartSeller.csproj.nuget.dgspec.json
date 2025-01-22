@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/PopcartSeller.csproj": {}
+    "/Users/greykvng/Downloads/PopcartSeller/PopcartSeller/PopcartSeller.csproj": {}
   },
   "projects": {
-    "/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/PopcartSeller.csproj": {
+    "/Users/greykvng/Downloads/PopcartSeller/PopcartSeller/PopcartSeller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/PopcartSeller.csproj",
+        "projectUniqueName": "/Users/greykvng/Downloads/PopcartSeller/PopcartSeller/PopcartSeller.csproj",
         "projectName": "PopcartSeller",
-        "projectPath": "/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/PopcartSeller.csproj",
+        "projectPath": "/Users/greykvng/Downloads/PopcartSeller/PopcartSeller/PopcartSeller.csproj",
         "packagesPath": "/Users/greykvng/.nuget/packages/",
-        "outputPath": "/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/",
+        "outputPath": "/Users/greykvng/Downloads/PopcartSeller/PopcartSeller/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/greykvng/.nuget/NuGet/NuGet.Config"
