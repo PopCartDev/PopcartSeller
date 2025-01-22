@@ -2334,8 +2334,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>whmag43sor</Fingerprint>
-      <Integrity>ZGBMuu7xmJAXb0/oEwb5by28DgeDQPJL+fk3nXlo/qc=</Integrity>
+      <Fingerprint>nyrey2625c</Fingerprint>
+      <Integrity>Dw8jNO2IngsGCW1SQYc6Ca6Wu2tYRV00P0yeXKDT6CU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\images\small\img-10.jpg'))</OriginalItemSpec>

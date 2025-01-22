@@ -1,0 +1,176 @@
+<div class="d-flex flex-column h-100 p-5">
+    <div class="d-flex flex-column flex-grow-1">
+        <div class="row h-100">
+            <div class="col-xxl-7">
+                <div class="row justify-content-center h-100">
+                    <div class="col-lg-6 py-lg-5">
+                        <div class="d-flex flex-column h-80 justify-content-center">
+                            <div class="auth-logo mb-4">
+                                <a href="#" class="logo-dark">
+                                    <img src="assets/images/logo-dark.png" height="60" alt="logo dark">
+                                </a>
+                                <a href="#" class="logo-light">
+                                    <img src="assets/images/logo-light.png" height="60" alt="logo light">
+                                </a>
+                            </div>
+
+                            <!-- Mobile Number Section -->
+                            <div id="Mobile">
+                                <h2 class="fw-bold fs-24">Sign In</h2>
+                                <p class="text-muted mt-1 mb-4">Enter your mobile number to access your dashboard</p>
+
+                                <div class="mb-5">
+                                    <form id="sendOtpForm" method="post" class="authentication-form">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="phoneNumber">Mobile Number</label>
+                                            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter your phone number" pattern="\+234\d{10}" title="Enter a valid phone number in the format +234XXXXXXXXXX" required>
+                                            <small class="form-text text-muted">Enter a mobile number (e.g., +234XXXXXXXXXX for Nigeria).</small>
+                                        </div>
+
+                                        <div class="mb-1 text-center d-grid">
+                                            <button class="btn btn-soft-primary" type="submit" onclick="submitForm(event)">Send OTP</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            
+
+                            <!-- OTP Verification Section -->
+                           <div id="OtpVerify" style="display: none;">
+                              <h3 class="fw-bold fs-20 text-center mt-5">Enter OTP</h3>
+                              <p class="text-muted text-center mb-4">We sent a 6-digit code to your phone</p>
+
+                              <form asp-controller="Auth" asp-action="Index" method="post" class="authentication-form">
+                                    <div class="d-flex justify-content-center gap-2 mb-3">
+                                        <!-- 6 OTP Input Boxes -->
+                                        @for (int i = 1; i <= 6; i++)
+                                        {
+                                             <input type="text" id="otp-@i" name="otp[@i]" maxlength="1" class="otp-input text-center form-control" 
+                                                  style="width: 50px; height: 50px; font-size: 24px;" required 
+                                                  oninput="moveToNextBox(event, this)" />
+                                        }
+                                   </div>
+
+                                   <div class="mb-1 text-center d-grid">
+                                        <button class="btn btn-soft-primary" type="submit">Verify OTP</button>
+                                   </div>
+                              </form>
+
+                              <br>
+                              <div class="mb-3 text-center">
+                                   <a href="#" id="resendOtpLink" class="text-muted text-unline-dashed ms-1" onclick="resendOtp(event)" style="pointer-events: none; color: #adb5bd;">Resend OTP</a>
+                                   <span id="countdownTimer" style="display: none; color: #6c757d; margin-left: 10px;"></span>
+                              </div>
+                              </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-5 d-none d-xxl-flex">
+                <div class="card h-100 mb-0 overflow-hidden">
+                    <div class="d-flex flex-column h-100">
+                        <img src="assets/images/small/img-10.jpg" alt="" class="w-100 h-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+     function moveToNextBox(event, currentInput) {
+        const nextInput = currentInput.nextElementSibling;
+        const prevInput = currentInput.previousElementSibling;
+
+        if (currentInput.value.length === 1 && nextInput && nextInput.tagName === 'INPUT') {
+            nextInput.focus(); // Move to the next input box
+        } else if (event.inputType === 'deleteContentBackward' && prevInput && prevInput.tagName === 'INPUT') {
+            prevInput.focus(); // Move to the previous input box if backspace is pressed
+        }
+    }
+
+    let countdownInterval;
+
+    function startCountdown(duration) {
+        const countdownElement = document.getElementById('countdownTimer');
+        const resendLink = document.getElementById('resendOtpLink');
+        let timeRemaining = duration;
+
+        resendLink.style.pointerEvents = 'none'; // Disable the link
+        resendLink.style.color = '#adb5bd'; // Gray out the link
+        countdownElement.style.display = 'inline'; // Show the timer
+
+        countdownInterval = setInterval(() => {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            countdownElement.textContent = `(${minutes}:${seconds < 10 ? '0' + seconds : seconds})`;
+
+            if (timeRemaining === 0) {
+                clearInterval(countdownInterval);
+                countdownElement.style.display = 'none'; // Hide the timer
+                resendLink.style.pointerEvents = 'auto'; // Enable the link
+                resendLink.style.color = ''; // Reset color
+            }
+
+            timeRemaining--;
+        }, 1000);
+    }
+
+    async function submitForm(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        const form = document.getElementById('sendOtpForm');
+        const phoneNumberInput = document.getElementById('phoneNumber').value;
+
+        try {
+            const response = await fetch(
+                'http://popcartonboarding.e7epf9fadvcwbeef.uksouth.azurecontainer.io:3000/auth/send-otp',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        phone: phoneNumberInput,
+                    }),
+                }
+            );
+
+            const responseData = await response.json();
+
+            if (response.ok && responseData.status) {
+                // Toggle visibility with animation
+                const mobileSection = document.getElementById('Mobile');
+                const otpSection = document.getElementById('OtpVerify');
+
+                mobileSection.style.display = 'none'; // Hide the Mobile section
+                otpSection.style.display = 'block'; // Show the OTP section
+
+                startCountdown(60); // Start countdown after successful OTP sent
+            } else {
+                alert(responseData.message || 'Failed to send OTP. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error sending OTP:', error);
+            alert('An error occurred while sending the OTP. Please try again.');
+        }
+    }
+
+    function resendOtp(event) {
+        event.preventDefault();
+        alert('Resending OTP...'); // Replace this with your resend OTP logic
+        startCountdown(60); // Restart countdown
+    }
+</script>
+
+<style>
+    .otp-input {
+        border: 1px solid #ddd;
+        text-align: center;
+        font-weight: lighter;
+    }
+</style>

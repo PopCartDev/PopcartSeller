@@ -176,12 +176,6 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/k3br15817c-heli984qgy.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/j82z3dgn0l-vwjqqmu35f.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/iouixvjlfq-af6t6akzxj.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/qfnsik6k53-s35znxhj07.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ndden9ionu-badqbrcw3f.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/a6jwyyjs5r-4bv6baw6pv.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/73oikspol0-5mr611t10n.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ola1rjs140-j7yi5s2tyh.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/xmdo10w4nr-rsn8cuxmxs.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/bkqd50d2r1-fct8wlb60m.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/308rz13peq-rinpjdwxvc.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/t70xjlf1sj-2va08droig.gz
@@ -196,7 +190,6 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/yj3jdjqxxy-3uwvmoz7z7.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/msvjexsgu2-7nl5c5u8yk.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/8warq2j8jj-tf1bhloemt.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/k63dford15-xa3sa9skau.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/0j9g2q3l3u-o58ox1a3wa.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/to28s6cpxp-2kw6y6q2fy.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/uf8llwsquo-dzu9wr7ntq.gz
@@ -3431,3 +3424,11 @@
 /Users/greykvng/Downloads/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/k63dford15-z0l4e1bjoi.gz
 /Users/greykvng/Downloads/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ndden9ionu-xvus2r6vn0.gz
 /Users/greykvng/Downloads/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ola1rjs140-pgxc5o94f3.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/PopcartSeller.sourcelink.json
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/qfnsik6k53-rb56cu5ar8.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ndden9ionu-xvus2r6vn0.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/a6jwyyjs5r-1jngjy9rbq.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/73oikspol0-jzvtifpvf0.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ola1rjs140-pgxc5o94f3.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/xmdo10w4nr-g6o0jyxkz8.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/k63dford15-z0l4e1bjoi.gz

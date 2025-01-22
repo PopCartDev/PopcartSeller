@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PopcartSeller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a903de9d9ca708495eb1bfa58c0862cf027c30e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff400a25d7b3e050039355465963bf567862e9f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PopcartSeller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PopcartSeller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
