@@ -1,3 +1,4 @@
+
 <div class="d-flex flex-column h-100 p-5">
     <div class="d-flex flex-column flex-grow-1">
         <div class="row h-100">
@@ -7,10 +8,10 @@
                         <div class="d-flex flex-column h-80 justify-content-center">
                             <div class="auth-logo mb-4">
                                 <a href="#" class="logo-dark">
-                                    <img src="assets/images/logo-dark.png" height="60" alt="logo dark">
+                                    <img src="~/assets/images/logo-dark.png" height="60" alt="logo dark">
                                 </a>
                                 <a href="#" class="logo-light">
-                                    <img src="assets/images/logo-light.png" height="60" alt="logo light">
+                                    <img src="~/assets/images/logo-light.png" height="60" alt="logo light">
                                 </a>
                             </div>
 
@@ -23,8 +24,8 @@
                                     <form id="sendOtpForm" method="post" class="authentication-form">
                                         <div class="mb-3">
                                             <label class="form-label" for="phoneNumber">Mobile Number</label>
-                                            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter your phone number" pattern="\+234\d{10}" title="Enter a valid phone number in the format +234XXXXXXXXXX" required>
-                                            <small class="form-text text-muted">Enter a mobile number (e.g., +234XXXXXXXXXX for Nigeria).</small>
+                                            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="e.g., +234XXXXXXXXXX for Nigeria" pattern="\+234\d{10}" title="Enter a valid phone number in the format +234XXXXXXXXXX" required>
+                                            @* <small class="form-text text-muted">Enter a mobile number (e.g., +234XXXXXXXXXX for Nigeria).</small> *@
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
@@ -39,23 +40,28 @@
                             <!-- OTP Verification Section -->
                            <div id="OtpVerify" style="display: none;">
                               <h3 class="fw-bold fs-20 text-center mt-5">Enter OTP</h3>
-                              <p class="text-muted text-center mb-4">We sent a 6-digit code to your phone</p>
+                              <p class="text-muted text-center mb-4">We sent a 4-digit code to your phone</p>
 
-                              <form asp-controller="Auth" asp-action="Index" method="post" class="authentication-form">
-                                    <div class="d-flex justify-content-center gap-2 mb-3">
-                                        <!-- 6 OTP Input Boxes -->
-                                        @for (int i = 1; i <= 6; i++)
-                                        {
-                                             <input type="text" id="otp-@i" name="otp[@i]" maxlength="1" class="otp-input text-center form-control" 
-                                                  style="width: 50px; height: 50px; font-size: 24px;" required 
-                                                  oninput="moveToNextBox(event, this)" />
-                                        }
-                                   </div>
+                              <form asp-controller="Auth" asp-action="VerifyPhone" method="post" class="authentication-form">
+                                <div class="d-flex justify-content-center gap-2 mb-3">
+                                    <input type="tel" id="phone" style="display: none;" name="phone" class="form-control">
+                                    
+                                    <!-- 4 OTP Input Boxes -->
+                                    @for (int i = 1; i <= 4; i++)
+                                    {
+                                        <input type="text" id="otp-@i" name="otp" maxlength="1" class="otp-input text-center form-control"
+                                            style="width: 50px; height: 50px; font-size: 24px;" required 
+                                            oninput="moveToNextBox(event, this)" />
+                                    }
+                                </div>
 
-                                   <div class="mb-1 text-center d-grid">
-                                        <button class="btn btn-soft-primary" type="submit">Verify OTP</button>
-                                   </div>
-                              </form>
+                                <!-- Hidden field to store the combined code -->
+                                <input type="hidden" id="code" name="code">
+
+                                <div class="mb-1 text-center d-grid">
+                                    <button class="btn btn-soft-primary" type="submit" onclick="combineOtpCode(event)">Verify OTP</button>
+                                </div>
+                            </form>
 
                               <br>
                               <div class="mb-3 text-center">
@@ -72,7 +78,7 @@
             <div class="col-xxl-5 d-none d-xxl-flex">
                 <div class="card h-100 mb-0 overflow-hidden">
                     <div class="d-flex flex-column h-100">
-                        <img src="assets/images/small/img-10.jpg" alt="" class="w-100 h-100">
+                        <img src="~/assets/images/small/img-10.jpg" alt="" class="w-100 h-100">
                     </div>
                 </div>
             </div>
@@ -81,16 +87,32 @@
 </div>
 
 <script>
+    const phone = document.getElementById('phone');
 
-     function moveToNextBox(event, currentInput) {
-        const nextInput = currentInput.nextElementSibling;
-        const prevInput = currentInput.previousElementSibling;
-
-        if (currentInput.value.length === 1 && nextInput && nextInput.tagName === 'INPUT') {
-            nextInput.focus(); // Move to the next input box
-        } else if (event.inputType === 'deleteContentBackward' && prevInput && prevInput.tagName === 'INPUT') {
-            prevInput.focus(); // Move to the previous input box if backspace is pressed
+      function moveToNextBox(event, currentInput) {
+        if (currentInput.value.length === 1) {
+            // Focus next input field if the current one has a value
+            const nextInput = currentInput.nextElementSibling;
+            if (nextInput) {
+                nextInput.focus();
+            }
         }
+    }
+
+    // Function to combine OTP digits and set the value of the hidden input
+    function combineOtpCode(event) {
+        event.preventDefault(); // Prevent form submission to set code value first
+
+        // Combine the values from the 4 OTP inputs
+        let otpCode = '';
+        for (let i = 1; i <= 4; i++) {
+            otpCode += document.getElementById(`otp-${i}`).value;
+        }
+
+        // Set the combined OTP code to the hidden input
+        document.getElementById('code').value = otpCode;
+
+        event.target.closest('form').submit();
     }
 
     let countdownInterval;
@@ -143,6 +165,7 @@
             const responseData = await response.json();
 
             if (response.ok && responseData.status) {
+                phone.value = phoneNumberInput;
                 // Toggle visibility with animation
                 const mobileSection = document.getElementById('Mobile');
                 const otpSection = document.getElementById('OtpVerify');
@@ -162,7 +185,6 @@
 
     function resendOtp(event) {
         event.preventDefault();
-        alert('Resending OTP...'); // Replace this with your resend OTP logic
         startCountdown(60); // Restart countdown
     }
 </script>

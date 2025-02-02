@@ -255,7 +255,6 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/zxu8ry1tuh-or032dych6.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/6mpwfbjh7o-a8e8qvbwx6.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/hnb5ier4b5-ghvwldsoq7.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/mm8tgr64ja-vy9bqvfsx3.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/9ft5z0yrku-v1wfxa1igp.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/iprrl5ldh7-fvgz04en0o.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/9wdrl6a3xa-s7e81hrpy8.gz
@@ -3432,3 +3431,7 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ola1rjs140-pgxc5o94f3.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/xmdo10w4nr-g6o0jyxkz8.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/k63dford15-z0l4e1bjoi.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/PopcartSeller.csproj.AssemblyReference.cache
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/PopcartS.43DA33DF.Up2Date
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/mm8tgr64ja-vy9bqvfsx3.gz
