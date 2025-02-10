@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["PopcartSeller/PopcartSeller.csproj", "PopcartSeller/"]
 RUN dotnet restore "PopcartSeller/PopcartSeller.csproj"
 COPY . .
-WORKDIR /src/CecyApi
+WORKDIR /src/PopcartSeller
 RUN dotnet build "PopcartSeller.csproj" -c Release -o /app/build
 
 FROM build AS publish
