@@ -91,25 +91,20 @@
 
       function moveToNextBox(event, currentInput) {
         if (currentInput.value.length === 1) {
-            // Focus next input field if the current one has a value
             const nextInput = currentInput.nextElementSibling;
             if (nextInput) {
                 nextInput.focus();
             }
         }
     }
-
-    // Function to combine OTP digits and set the value of the hidden input
     function combineOtpCode(event) {
-        event.preventDefault(); // Prevent form submission to set code value first
+        event.preventDefault(); 
 
-        // Combine the values from the 4 OTP inputs
         let otpCode = '';
         for (let i = 1; i <= 4; i++) {
             otpCode += document.getElementById(`otp-${i}`).value;
         }
 
-        // Set the combined OTP code to the hidden input
         document.getElementById('code').value = otpCode;
 
         event.target.closest('form').submit();
@@ -122,9 +117,9 @@
         const resendLink = document.getElementById('resendOtpLink');
         let timeRemaining = duration;
 
-        resendLink.style.pointerEvents = 'none'; // Disable the link
-        resendLink.style.color = '#adb5bd'; // Gray out the link
-        countdownElement.style.display = 'inline'; // Show the timer
+        resendLink.style.pointerEvents = 'none'; 
+        resendLink.style.color = '#adb5bd'; 
+        countdownElement.style.display = 'inline'; 
 
         countdownInterval = setInterval(() => {
             const minutes = Math.floor(timeRemaining / 60);
@@ -133,9 +128,9 @@
 
             if (timeRemaining === 0) {
                 clearInterval(countdownInterval);
-                countdownElement.style.display = 'none'; // Hide the timer
-                resendLink.style.pointerEvents = 'auto'; // Enable the link
-                resendLink.style.color = ''; // Reset color
+                countdownElement.style.display = 'none'; 
+                resendLink.style.pointerEvents = 'auto';
+                resendLink.style.color = ''; 
             }
 
             timeRemaining--;
@@ -143,14 +138,14 @@
     }
 
     async function submitForm(event) {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault(); 
 
         const form = document.getElementById('sendOtpForm');
         const phoneNumberInput = document.getElementById('phoneNumber').value;
 
         try {
             const response = await fetch(
-                'http://popcartonboarding.e7epf9fadvcwbeef.uksouth.azurecontainer.io:3000/auth/send-otp',
+                'https://api-ms-td09.onrender.com/auth/send-otp',
                 {
                     method: 'POST',
                     headers: {
@@ -166,14 +161,14 @@
 
             if (response.ok && responseData.status) {
                 phone.value = phoneNumberInput;
-                // Toggle visibility with animation
+               
                 const mobileSection = document.getElementById('Mobile');
                 const otpSection = document.getElementById('OtpVerify');
 
-                mobileSection.style.display = 'none'; // Hide the Mobile section
-                otpSection.style.display = 'block'; // Show the OTP section
+                mobileSection.style.display = 'none'; 
+                otpSection.style.display = 'block'; 
 
-                startCountdown(60); // Start countdown after successful OTP sent
+                startCountdown(60); 
             } else {
                 alert(responseData.message || 'Failed to send OTP. Please try again.');
             }
@@ -185,7 +180,7 @@
 
     function resendOtp(event) {
         event.preventDefault();
-        startCountdown(60); // Restart countdown
+        startCountdown(60); 
     }
 </script>
 
