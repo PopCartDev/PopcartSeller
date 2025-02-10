@@ -101,6 +101,7 @@ public class HomeController : Controller
                 else
                 {
                     return $"Failed to upload the photo. Status code: {response.StatusCode}";
+                    
                 }
             }
         }
