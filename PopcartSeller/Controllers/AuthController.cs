@@ -43,9 +43,22 @@ public class AuthController : Controller
         }
     }
 
-    public IActionResult Login()
+    public async Task<IActionResult> Login()
     {
-        return View();
+        if (Request.Query.Any())
+        {
+            string? accessToken = Request.Query.ContainsKey("accesstoken") ? Request.Query["accesstoken"].ToString() : null;
+
+            var businessProfile = await _authService.GetUserProfile(accessToken);
+
+            return View("Index", businessProfile);
+        }
+        else{
+
+           return View();
+        }
+
+        
     }
 
     public IActionResult Sendotp()

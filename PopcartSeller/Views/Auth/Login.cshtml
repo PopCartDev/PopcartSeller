@@ -15,7 +15,7 @@
                                 </a>
                             </div>
 
-                            <!-- Mobile Number Section -->
+                           <!-- Mobile Number Section -->
                             <div id="Mobile">
                                 <h2 class="fw-bold fs-24">Sign In</h2>
                                 <p class="text-muted mt-1 mb-4">Enter your mobile number to access your dashboard</p>
@@ -24,8 +24,70 @@
                                     <form id="sendOtpForm" method="post" class="authentication-form">
                                         <div class="mb-3">
                                             <label class="form-label" for="phoneNumber">Mobile Number</label>
-                                            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="e.g., +234XXXXXXXXXX for Nigeria" pattern="\+234\d{10}" title="Enter a valid phone number in the format +234XXXXXXXXXX" required>
-                                            @* <small class="form-text text-muted">Enter a mobile number (e.g., +234XXXXXXXXXX for Nigeria).</small> *@
+                                            <div class="input-group">
+                                                <select id="countryCode" name="countryCode" class="form-select" style="max-width: 120px;" required>
+                                                    <option value="+234" data-country="Nigeria">🇳🇬 +234 </option>
+                                                    <option value="+213" data-country="Algeria">🇩🇿 +213 </option>
+                                                    <option value="+244" data-country="Angola">🇦🇴 +244 </option>
+                                                    <option value="+229" data-country="Benin">🇧🇯 +229 </option>
+                                                    <option value="+267" data-country="Botswana">🇧🇼 +267 </option>
+                                                    <option value="+226" data-country="Burkina Faso">🇧🇫 +226 </option>
+                                                    <option value="+257" data-country="Burundi">🇧🇮 +257 </option>
+                                                    <option value="+237" data-country="Cameroon">🇨🇲 +237 </option>
+                                                    <option value="+238" data-country="Cape Verde">🇨🇻 +238 </option>
+                                                    <option value="+236" data-country="Central African Republic">🇨🇫 +236 </option>
+                                                    <option value="+235" data-country="Chad">🇹🇩 +235 </option>
+                                                    <option value="+269" data-country="Comoros">🇰🇲 +269 </option>
+                                                    <option value="+242" data-country="Congo">🇨🇬 +242 </option>
+                                                    <option value="+243" data-country="Democratic Republic of the Congo">🇨🇩 +243 </option>
+                                                    <option value="+225" data-country="Côte d'Ivoire">🇨🇮 +225</option>
+                                                    <option value="+253" data-country="Djibouti">🇩🇯 +253 </option>
+                                                    <option value="+20" data-country="Egypt">🇪🇬 +20 </option>
+                                                    <option value="+240" data-country="Equatorial Guinea">🇬🇶 +240 </option>
+                                                    <option value="+291" data-country="Eritrea">🇪🇷 +291 </option>
+                                                    <option value="+251" data-country="Ethiopia">🇪🇹 +251 </option>
+                                                    <option value="+241" data-country="Gabon">🇬🇦 +241 </option>
+                                                    <option value="+220" data-country="Gambia">🇬🇲 +220 </option>
+                                                    <option value="+233" data-country="Ghana">🇬🇭 +233 </option>
+                                                    <option value="+224" data-country="Guinea">🇬🇳 +224 </option>
+                                                    <option value="+245" data-country="Guinea-Bissau">🇬🇼 +245 </option>
+                                                    <option value="+254" data-country="Kenya">🇰🇪 +254 </option>
+                                                    <option value="+266" data-country="Lesotho">🇱🇸 +266 </option>
+                                                    <option value="+231" data-country="Liberia">🇱🇷 +231 </option>
+                                                    <option value="+218" data-country="Libya">🇱🇾 +218 </option>
+                                                    <option value="+261" data-country="Madagascar">🇲🇬 +261 </option>
+                                                    <option value="+265" data-country="Malawi">🇲🇼 +265 </option>
+                                                    <option value="+223" data-country="Mali">🇲🇱 +223 </option>
+                                                    <option value="+222" data-country="Mauritania">🇲🇷 +222 </option>
+                                                    <option value="+230" data-country="Mauritius">🇲🇺 +230 </option>
+                                                    <option value="+212" data-country="Morocco">🇲🇦 +212 </option>
+                                                    <option value="+258" data-country="Mozambique">🇲🇿 +258 </option>
+                                                    <option value="+264" data-country="Namibia">🇳🇦 +264 </option>
+                                                    <option value="+227" data-country="Niger">🇳🇪 +227 </option>
+                                                    <option value="+234" data-country="Nigeria">🇳🇬 +234 </option>
+                                                    <option value="+250" data-country="Rwanda">🇷🇼 +250 </option>
+                                                    <option value="+290" data-country="Saint Helena">🇸🇭 +290 </option>
+                                                    <option value="+239" data-country="Sao Tome and Principe">🇸🇹 +239 </option>
+                                                    <option value="+221" data-country="Senegal">🇸🇳 +221 </option>
+                                                    <option value="+248" data-country="Seychelles">🇸🇨 +248 </option>
+                                                    <option value="+232" data-country="Sierra Leone">🇸🇱 +232 </option>
+                                                    <option value="+252" data-country="Somalia">🇸🇴 +252 </option>
+                                                    <option value="+27" data-country="South Africa">🇿🇦 +27 </option>
+                                                    <option value="+211" data-country="South Sudan">🇸🇸 +211 </option>
+                                                    <option value="+249" data-country="Sudan">🇸🇩 +249 </option>
+                                                    <option value="+268" data-country="Eswatini">🇸🇿 +268 </option>
+                                                    <option value="+255" data-country="Tanzania">🇹🇿 +255 </option>
+                                                    <option value="+228" data-country="Togo">🇹🇬 +228 </option>
+                                                    <option value="+216" data-country="Tunisia">🇹🇳 +216 </option>
+                                                    <option value="+256" data-country="Uganda">🇺🇬 +256 </option>
+                                                    <option value="+260" data-country="Zambia">🇿🇲 +260 </option>
+                                                    <option value="+263" data-country="Zimbabwe">🇿🇼 +263 </option>
+                                                </select>
+
+
+                                                <!-- Remaining Mobile Number Input -->
+                                                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="XXXXXXXXXX" pattern="\d{10}" title="Enter the 10-digit phone number" required>
+                                            </div>
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
@@ -34,6 +96,7 @@
                                     </form>
                                 </div>
                             </div>
+
 
                             
 
@@ -138,45 +201,49 @@
     }
 
     async function submitForm(event) {
-        event.preventDefault(); 
+    event.preventDefault(); 
 
-        const form = document.getElementById('sendOtpForm');
-        const phoneNumberInput = document.getElementById('phoneNumber').value;
+    const form = document.getElementById('sendOtpForm');
+    const phoneNumberInput = document.getElementById('phoneNumber').value;
+    const countryCode = document.getElementById('countryCode').value;
 
-        try {
-            const response = await fetch(
-                'https://api-ms-td09.onrender.com/auth/send-otp',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        phone: phoneNumberInput,
-                    }),
-                }
-            );
+    
+    const fullPhoneNumber = `${countryCode}${phoneNumberInput}`;
 
-            const responseData = await response.json();
-
-            if (response.ok && responseData.status) {
-                phone.value = phoneNumberInput;
-               
-                const mobileSection = document.getElementById('Mobile');
-                const otpSection = document.getElementById('OtpVerify');
-
-                mobileSection.style.display = 'none'; 
-                otpSection.style.display = 'block'; 
-
-                startCountdown(60); 
-            } else {
-                alert(responseData.message || 'Failed to send OTP. Please try again.');
+    try {
+        const response = await fetch(
+            'https://api-ms-td09.onrender.com/auth/send-otp',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phone: fullPhoneNumber,
+                }),
             }
-        } catch (error) {
-            console.error('Error sending OTP:', error);
-            alert('An error occurred while sending the OTP. Please try again.');
+        );
+
+        const responseData = await response.json();
+
+        if (response.ok && responseData.status) {
+            phone.value = fullPhoneNumber;
+           
+            const mobileSection = document.getElementById('Mobile');
+            const otpSection = document.getElementById('OtpVerify');
+
+            mobileSection.style.display = 'none'; 
+            otpSection.style.display = 'block'; 
+
+            startCountdown(60); 
+        } else {
+            alert(responseData.message || 'Failed to send OTP. Please try again.');
         }
+    } catch (error) {
+        console.error('Error sending OTP:', error);
+        alert('An error occurred while sending the OTP. Please try again.');
     }
+}
 
     function resendOtp(event) {
         event.preventDefault();
