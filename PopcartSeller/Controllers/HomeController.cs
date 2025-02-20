@@ -72,6 +72,35 @@ public class HomeController : Controller
             return StatusCode(500, "An error occurred while fetching product categories.");
         }
     }
+    public async Task<List<Inventory>> GetInventory()
+    {
+        string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+        string endpoint = $"{_userManagementBaseUrl}inventory";
+
+        try
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+                var inventoryResponse = JsonConvert.DeserializeObject<InventoryResponse>(responseData);
+
+                if (inventoryResponse?.Data?.Products != null)
+                {
+                    return inventoryResponse.Data.Products;
+                }
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "Error while fetching inventory.");
+        }
+
+        return new List<Inventory>();
+    }
 
     public async Task<string> UploadPhoto(IFormFile file)
     {
@@ -150,6 +179,7 @@ public class HomeController : Controller
             category = data.Product.category,
             description = data.Product.description,
             brand = data.Product.brand,
+            stockUnit = data.Product.stockUnit,
             price = data.Product.price,
             images = uploadedImageUrls
         };
@@ -180,6 +210,29 @@ public class HomeController : Controller
             _logger.LogError(ex, "An error occurred while adding the product.");
             TempData["Error"] = "An error occurred while adding the product.";
             return RedirectToAction(nameof(AddProduct));
+        }
+    }
+
+    
+    public async Task<IActionResult> Inventory()
+    {
+         string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+
+        if (!string.IsNullOrEmpty(token))
+        {
+            var businessProfile = await _authService.GetUserProfile(token);
+            var inventoryList = await GetInventory();
+            var viewModel = new Main
+            {
+                BusinessProfile = businessProfile,
+                Inventory = inventoryList
+            };
+        
+            return View("Inventory", viewModel);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Auth");
         }
     }
 }

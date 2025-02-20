@@ -2368,7 +2368,7 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\config.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1764"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Jan 2025 03:46:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1764"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Feb 2025 16:24:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PopcartSeller/assets/js/config.min.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\config.min.js'))</AssetFile>
@@ -2386,7 +2386,7 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\config.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vwjqqmu35f"},{"Name":"integrity","Value":"sha256-sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw="},{"Name":"label","Value":"_content/PopcartSeller/assets/js/config.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1764"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 22 Jan 2025 03:46:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1764"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sQY5b3Oov0Xz3AospXqh8VzJGFYw/z/L4OXdVgT7wLw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Feb 2025 16:24:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/PopcartSeller/assets/js/pages/app-calendar.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\pages\app-calendar.js'))</AssetFile>

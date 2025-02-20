@@ -241,7 +241,6 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/r0uwqrvnxn-aewhcv4iqu.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/cz6nhee57k-lgy7m6u5bx.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/ignwpn3czg-1nndii5jig.gz
-/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/8cpxesboib-vwjqqmu35f.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/54iknd09h0-kvt6zmox6e.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/khd1rw3p2u-lx24pi0se1.gz
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/jrgh69o88f-nwcldeqyob.gz
@@ -3435,3 +3434,4 @@
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/PopcartS.43DA33DF.Up2Date
 /Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/mm8tgr64ja-vy9bqvfsx3.gz
+/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/obj/Debug/net9.0/compressed/8cpxesboib-vwjqqmu35f.gz
