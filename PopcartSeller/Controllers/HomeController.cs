@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using PopcartSeller.Models;
 using PopcartSeller.Services;
 using Newtonsoft.Json;
+using System.Text;
 
 public class HomeController : Controller
 {
@@ -143,6 +144,8 @@ public class HomeController : Controller
 
     [HttpPost]
     public async Task<IActionResult> AddProduct(Main data)
+
+    
     {
         string token = HttpContext.Session.GetString("Token") ?? string.Empty;
         var uploadedImageUrls = new List<string>();
@@ -213,7 +216,77 @@ public class HomeController : Controller
         }
     }
 
-    
+    [HttpPost]
+    public async Task<IActionResult> DeleteProduct(string id)
+    {
+        string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+        if (!string.IsNullOrEmpty(token))
+        {
+            string endpoint = $"{_userManagementBaseUrl}inventory/{id}/delete";
+
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.DeleteAsync(endpoint);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Success"] = "Product deleted successfully.";
+                }
+                else
+                {
+                    TempData["Error"] = "Failed to delete product.";
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, "Error while deleting product.");
+                TempData["Error"] = "An error occurred while deleting the product.";
+            }
+        }
+
+        return RedirectToAction("Inventory");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditProduct(Inventory product)
+{
+    string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+    if (!string.IsNullOrEmpty(token))
+    {
+        string endpoint = $"{_userManagementBaseUrl}inventory/{product._id}";
+
+        try
+        {
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+
+            var jsonProduct = JsonConvert.SerializeObject(product);
+            var content = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PutAsync(endpoint, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["SuccessMessage"] = "Product updated successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to update product.";
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "Error while updating product.");
+            TempData["ErrorMessage"] = "An error occurred while updating the product.";
+        }
+    }
+
+    return RedirectToAction("Inventory");
+}
+
     public async Task<IActionResult> Inventory()
     {
          string token = HttpContext.Session.GetString("Token") ?? string.Empty;

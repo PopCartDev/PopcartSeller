@@ -2,6 +2,12 @@
 
 
      <div class="wrapper">
+          <button type="button" id="toast-trigger" data-toast data-toast-text="Product deleted successfully!" data-toast-gravity="top" data-toast-position="center" data-toast-className="success" data-toast-duration="6000" class="btn btn-light w-xs" style="display: none;">
+          Success
+          </button>
+          <button type="button" id="toast-triggerError" data-toast data-toast-text="Error ! An error occurred." data-toast-gravity="top" data-toast-position="center" data-toast-className="danger" data-toast-duration="6000" class="btn btn-light w-xs" style="display: none;">
+          Error
+          </button>
 
          <header class="topbar">
             <div class="container-fluid">
@@ -1274,9 +1280,11 @@
                               <div class="card">
                                    <div class="d-flex card-header justify-content-between align-items-center">
                                         <div>
-                                             <h4 class="card-title">All Products List</h4>
+                                              <div class="mb-3">
+                                             <input type="text" id="searchInput" class="form-control" placeholder="Type to search">
+                                             </div>
                                         </div>
-                                        <div class="dropdown">
+                                        @* <div class="dropdown">
                                              <a href="#" class="dropdown-toggle btn btn-sm btn-outline-light rounded" data-bs-toggle="dropdown" aria-expanded="false">
                                                   This Month
                                              </a>
@@ -1288,13 +1296,13 @@
                                                   <!-- item-->
                                                   <a href="#!" class="dropdown-item">Import</a>
                                              </div>
-                                        </div>
+                                        </div> *@
                                    </div>
                                    <div>
                                         <div class="table-responsive">
                                         @if (Model.Inventory != null && Model.Inventory.Any())
                                         {
-                                             <table class="table align-middle mb-0 table-hover table-centered">
+                                             <table  id="inventoryTable" class="table align-middle mb-0 table-hover table-centered">
                                              <thead class="bg-light-subtle">
                                                   <tr>
                                                        <th style="width: 20px;">
@@ -1322,7 +1330,7 @@
                                                                  <label class="form-check-label" for="customCheck2"></label>
                                                             </div>
                                                             </td>
-                                                            <td>@item.Name</td>
+                                                            <td class="product-name">@item.Name</td>
                                                             <td>@item.Price</td>
                                                             <td>@item.Description</td>
                                                             <td>@item.Brand</td>
@@ -1335,8 +1343,18 @@
                                                             </td>
                                                             <td>
                                                                  <div class="d-flex gap-2">
-                                                                      <a href="#!" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                                      <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                                                 <!-- Edit Button -->
+                                                                 <a href="#!" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                                      <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon>
+                                                                 </a>
+
+                                                                
+                                                                 <form method="post" asp-action="DeleteProduct" style="display:inline;">
+                                                                      <input type="hidden" name="id" value="@item._id" />
+                                                                      <button type="submit" class="btn btn-soft-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">
+                                                                           <iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon>
+                                                                      </button>
+                                                                 </form>
                                                                  </div>
                                                             </td>
                                                        </tr>
@@ -1383,3 +1401,52 @@
 <!-- Dashboard Js -->
 <script src="~/assets/js/pages/dashboard.js"></script>
 <script src="~/assets/js/pages/ecommerce-product-details.js"></script>
+
+<script>
+
+ $(document).ready(function() {
+      @if (TempData["Success"] != null)
+     {
+          <text>
+          let toastTrigger = document.getElementById("toast-trigger");
+          toastTrigger.setAttribute("data-toast-text", "@TempData["Success"]");
+          toastTrigger.setAttribute("data-toast-className", "success");
+          toastTrigger.click();
+          </text>
+     }
+
+     @if (TempData["Error"] != null)
+     {
+          <text>
+          let toastTrigger = document.getElementById("toast-triggerError");
+          toastTrigger.setAttribute("data-toast-text", "@TempData["Error"]");
+          toastTrigger.setAttribute("data-toast-className", "danger");
+          toastTrigger.click();
+          </text>
+     }
+     
+});
+</script>
+
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function () {
+    let filter = this.value.toLowerCase();
+    let table = document.getElementById('inventoryTable');
+    let rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) { // Skip header row
+        let nameCell = rows[i].querySelector('.product-name'); // Select by class
+
+        if (nameCell) {
+            let nameText = nameCell.textContent || nameCell.innerText;
+            if (nameText.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+});
+
+
+</script>
