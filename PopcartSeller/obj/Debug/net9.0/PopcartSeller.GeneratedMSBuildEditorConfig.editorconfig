@@ -208,6 +208,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9kYXNoYm9hcmQtc2FsZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/Views/Home/EditProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0UHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/Views/Home/extended-ratings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9leHRlbmRlZC1yYXRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -394,10 +398,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/Views/Home/product-details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9wcm9kdWN0LWRldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/Views/Home/product-edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9wcm9kdWN0LWVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/greykvng/Documents/PROJECTS/PopcartSeller/PopcartSeller/Views/Home/product-grid.cshtml]

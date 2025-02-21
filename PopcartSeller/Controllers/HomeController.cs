@@ -47,6 +47,28 @@ public class HomeController : Controller
             return RedirectToAction("Login", "Auth");
         }
     }
+   public async Task<IActionResult> EditProduct(string id)
+    {
+        string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+
+        if (!string.IsNullOrEmpty(token))
+        {
+            var businessProfile = await _authService.GetUserProfile(token);
+            var ProductDetail = await GetProduct(id);
+            var viewModel = new Main
+            {
+                BusinessProfile = businessProfile,
+                Product = new Product(),
+                GetProduct = ProductDetail
+            };
+            return View("EditProduct", viewModel);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Auth");
+        }
+    }
+    
 
     public async Task<IActionResult> GetProductCategories()
     {
@@ -102,6 +124,52 @@ public class HomeController : Controller
 
         return new List<Inventory>();
     }
+   public async Task<GetProduct> GetProduct(string id)
+{
+    string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+    string endpoint = $"{_userManagementBaseUrl}inventory/{id}"; 
+
+    try
+    {
+        _httpClient.DefaultRequestHeaders.Authorization = 
+            new AuthenticationHeaderValue("Bearer", token);
+        HttpResponseMessage response = await _httpClient.GetAsync(endpoint);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string responseData = await response.Content.ReadAsStringAsync();
+            _logger.LogInformation("API Response: " + responseData);
+
+            var productResponse = JsonConvert.DeserializeObject<ProductResponse>(responseData);
+
+            if (productResponse == null)
+            {
+                _logger.LogError("Deserialization failed: productResponse is null.");
+                return null;
+            }
+
+            if (productResponse.Data == null)
+            {
+                _logger.LogError("Deserialization failed: productResponse.Data is null.");
+                return null;
+            }
+
+            return productResponse.Data;
+        }
+        else
+        {
+            _logger.LogError($"API request failed with status code: {response.StatusCode}");
+        }
+    }
+    catch (HttpRequestException ex)
+    {
+        _logger.LogError(ex, "Error while fetching product details.");
+    }
+
+    return null;
+}
+
+
 
     public async Task<string> UploadPhoto(IFormFile file)
     {
@@ -249,43 +317,6 @@ public class HomeController : Controller
 
         return RedirectToAction("Inventory");
     }
-
-    [HttpPost]
-    public async Task<IActionResult> EditProduct(Inventory product)
-{
-    string token = HttpContext.Session.GetString("Token") ?? string.Empty;
-    if (!string.IsNullOrEmpty(token))
-    {
-        string endpoint = $"{_userManagementBaseUrl}inventory/{product._id}";
-
-        try
-        {
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
-
-            var jsonProduct = JsonConvert.SerializeObject(product);
-            var content = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await _httpClient.PutAsync(endpoint, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                TempData["SuccessMessage"] = "Product updated successfully.";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Failed to update product.";
-            }
-        }
-        catch (HttpRequestException ex)
-        {
-            _logger.LogError(ex, "Error while updating product.");
-            TempData["ErrorMessage"] = "An error occurred while updating the product.";
-        }
-    }
-
-    return RedirectToAction("Inventory");
-}
 
     public async Task<IActionResult> Inventory()
     {

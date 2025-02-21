@@ -473,47 +473,6 @@
                               </div>
                          </li>
 
-                         <li class="nav-item">
-                              <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCategory">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
-                                   </span>
-                                   <span class="nav-text"> Category </span>
-                              </a>
-                              <div class="collapse" id="sidebarCategory">
-                                   <ul class="nav sub-navbar-nav">
-                                        <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="category-list.html">List</a>
-                                        </li>                         
-                                        <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="category-edit.html">Edit</a>
-                                        </li>
-                                        <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="category-add.html">Create</a>
-                                        </li>
-                                   </ul>
-                              </div>
-                         </li>
-
-                         <li class="nav-item">
-                              <a class="nav-link menu-arrow" href="#sidebarInventory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInventory">
-                                   <span class="nav-icon">
-                                        <iconify-icon icon="solar:box-bold-duotone"></iconify-icon>
-                                   </span>
-                                   <span class="nav-text"> Inventory </span>
-                              </a>
-                              <div class="collapse" id="sidebarInventory">
-                                   <ul class="nav sub-navbar-nav">
-
-                                        <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="inventory-warehouse.html">Warehouse</a>
-                                        </li>
-                                        <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="inventory-received-orders.html">Received Orders</a>
-                                        </li>
-                                   </ul>
-                              </div>
-                         </li>
 
                          <li class="nav-item">
                               <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarOrders">
@@ -1331,9 +1290,9 @@
                                                             </div>
                                                             </td>
                                                             <td class="product-name">@item.Name</td>
-                                                            <td>@item.Price</td>
-                                                            <td>@item.Description</td>
-                                                            <td>@item.Brand</td>
+                                                            <td>@item.Price.ToString("C", new System.Globalization.CultureInfo("en-NG"))</td>
+                                                            <td class="product-description">@item.Description</td>
+                                                            <td class="product-brand">@item.Brand</td>
                                                             <td>@item.StockUnit</td>
                                                             <td>
                                                             @if (item.Images != null && item.Images.Any())
@@ -1343,10 +1302,12 @@
                                                             </td>
                                                             <td>
                                                                  <div class="d-flex gap-2">
-                                                                 <!-- Edit Button -->
-                                                                 <a href="#!" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                                      <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon>
-                                                                 </a>
+                                                                 <form method="post" asp-action="EditProduct" style="display:inline;">
+                                                                      <input type="hidden" name="id" value="@item._id" />
+                                                                      <button type="submit" class="btn btn-soft-danger btn-sm" onclick="return confirm('Are you sure you want to make changes to this product?');">
+                                                                           <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon>
+                                                                      </button>
+                                                                 </form>
 
                                                                 
                                                                  <form method="post" asp-action="DeleteProduct" style="display:inline;">
@@ -1382,9 +1343,6 @@
 
                </div>
           </div>
-          <!-- ==================================================== -->
-          <!-- End Page Content -->
-          <!-- ==================================================== -->
 
      </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1435,15 +1393,19 @@ document.getElementById('searchInput').addEventListener('keyup', function () {
     let rows = table.getElementsByTagName('tr');
 
     for (let i = 1; i < rows.length; i++) { // Skip header row
-        let nameCell = rows[i].querySelector('.product-name'); // Select by class
+        let nameCell = rows[i].querySelector('.product-name'); 
+        let descCell = rows[i].querySelector('.product-description');
+        let brandCell = rows[i].querySelector('.product-brand');
 
-        if (nameCell) {
-            let nameText = nameCell.textContent || nameCell.innerText;
-            if (nameText.toLowerCase().indexOf(filter) > -1) {
-                rows[i].style.display = '';
-            } else {
-                rows[i].style.display = 'none';
-            }
+        let nameText = nameCell ? nameCell.textContent.toLowerCase() : '';
+        let descText = descCell ? descCell.textContent.toLowerCase() : '';
+        let brandText = brandCell ? brandCell.textContent.toLowerCase() : '';
+
+        // Check if filter matches any of the columns
+        if (nameText.includes(filter) || descText.includes(filter) || brandText.includes(filter)) {
+            rows[i].style.display = '';
+        } else {
+            rows[i].style.display = 'none';
         }
     }
 });
