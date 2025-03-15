@@ -103,14 +103,14 @@
                             <!-- OTP Verification Section -->
                            <div id="OtpVerify" style="display: none;">
                               <h3 class="fw-bold fs-20 text-center mt-5">Enter OTP</h3>
-                              <p class="text-muted text-center mb-4">We sent a 4-digit code to your phone</p>
+                              <p class="text-muted text-center mb-4">We sent a 5-digit code to your phone</p>
 
                               <form asp-controller="Auth" asp-action="VerifyPhone" method="post" class="authentication-form">
                                 <div class="d-flex justify-content-center gap-2 mb-3">
                                     <input type="tel" id="phone" style="display: none;" name="phone" class="form-control">
                                     
                                     <!-- 4 OTP Input Boxes -->
-                                    @for (int i = 1; i <= 4; i++)
+                                    @for (int i = 1; i <= 5; i++)
                                     {
                                         <input type="text" id="otp-@i" name="otp" maxlength="1" class="otp-input text-center form-control"
                                             style="width: 50px; height: 50px; font-size: 24px;" required 
@@ -164,7 +164,7 @@
         event.preventDefault(); 
 
         let otpCode = '';
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 5; i++) {
             otpCode += document.getElementById(`otp-${i}`).value;
         }
 

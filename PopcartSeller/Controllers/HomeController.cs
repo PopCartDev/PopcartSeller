@@ -124,7 +124,7 @@ public class HomeController : Controller
 
         return new List<Inventory>();
     }
-   public async Task<GetProduct> GetProduct(string id)
+    public async Task<GetProduct> GetProduct(string id)
 {
     string token = HttpContext.Session.GetString("Token") ?? string.Empty;
     string endpoint = $"{_userManagementBaseUrl}inventory/{id}"; 
@@ -169,8 +169,6 @@ public class HomeController : Controller
     return null;
 }
 
-
-
     public async Task<string> UploadPhoto(IFormFile file)
     {
         string endpoint = $"{_userManagementBaseUrl}upload";
@@ -212,8 +210,6 @@ public class HomeController : Controller
 
     [HttpPost]
     public async Task<IActionResult> AddProduct(Main data)
-
-    
     {
         string token = HttpContext.Session.GetString("Token") ?? string.Empty;
         var uploadedImageUrls = new List<string>();
@@ -281,6 +277,81 @@ public class HomeController : Controller
             _logger.LogError(ex, "An error occurred while adding the product.");
             TempData["Error"] = "An error occurred while adding the product.";
             return RedirectToAction(nameof(AddProduct));
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateProduct(Main data)
+    {
+        string token = HttpContext.Session.GetString("Token") ?? string.Empty;
+        var uploadedImageUrls = new List<string>();
+       if (data.Product != null && data.Product.images != null)
+        {
+            try
+            {
+                foreach (var image in data.Product.images)
+                {
+                    if (image != null && image.Length > 0)
+                    {
+                        var uploadedUrl = await UploadPhoto(image);
+                        if (!string.IsNullOrEmpty(uploadedUrl))
+                        {
+                            uploadedImageUrls.Add(uploadedUrl);
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Image upload failed for one or more images.";
+                            return RedirectToAction(nameof(EditProduct));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while retrieving image URL.");
+                TempData["Error"] = "An error occurred while retrieving image URL.";
+                return RedirectToAction(nameof(EditProduct));
+            }
+        }
+        
+
+        var requestData = new
+        {
+            name = data.Product.name,
+            category = data.Product.category,
+            description = data.Product.description,
+            brand = data.Product.brand,
+            stockUnit = data.Product.stockUnit,
+            price = data.Product.price,
+            images = uploadedImageUrls
+        };
+
+        using var client = new HttpClient();
+        client.BaseAddress = new Uri(_userManagementBaseUrl);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var content = JsonContent.Create(requestData);
+
+        try
+        {
+            var response = await client.PostAsync($"inventory/{data.GetProduct._id}/edit", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["Success"] = "Product updated successfully!";
+                return RedirectToAction(nameof(EditProduct));
+            }
+            else
+            {
+                TempData["Error"] = "Failed to update product.";
+                return RedirectToAction(nameof(EditProduct));
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while adding the product.");
+            TempData["Error"] = "An error occurred while adding the product.";
+            return RedirectToAction(nameof(EditProduct));
         }
     }
 
